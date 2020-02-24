@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Nick的博客</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on Nick的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 23 Feb 2020 18:50:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>开播大吉</title>
+      <link>http://localhost:1313/post/%E5%BC%80%E6%92%AD%E5%A4%A7%E5%90%89/</link>
+      <pubDate>Sun, 23 Feb 2020 18:50:15 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E5%BC%80%E6%92%AD%E5%A4%A7%E5%90%89/</guid>
+      <description>#大家好 我的博客开通了，希望我能写出很好的文章</description>
+    </item>
+    
+    <item>
+      <title>第二篇博客</title>
+      <link>http://localhost:1313/post/%E7%AC%AC%E4%BA%8C%E7%AF%87%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Sun, 23 Feb 2020 18:50:15 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E7%AC%AC%E4%BA%8C%E7%AF%87%E5%8D%9A%E5%AE%A2/</guid>
+      <description>又见面了，这是第二篇博客 本文主要介绍如何用 hugo 搭建个人博客 下载hugo，解压后添加到 Windows 的系统环境变量的 PATH 中即可，不需安装。 创建一个博客新站点使</description>
+    </item>
+    
+  </channel>
+</rss>
