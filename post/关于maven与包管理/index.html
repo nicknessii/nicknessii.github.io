@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>开播大吉 - Nick的博客</title>
+  <title>关于Maven与包管理 - Nick的博客</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Nick" />
-  <meta name="description" content="#大家好 我的博客开通了，希望我能写出很好的文章" />
+  <meta name="description" content="JVM的工作 执行一个类的字节码 假如这个过程中碰到了新的类,则加载新类的字节码 包的概念 为了更好地组织类,Java提供了包机制 包就是把许多类放在" />
 
   <meta name="keywords" content="Hugo, theme, jane" />
 
@@ -35,7 +35,7 @@
 <meta name="generator" content="Hugo 0.65.2" />
 
 
-<link rel="canonical" href="http://localhost:1313/post/%E5%BC%80%E6%92%AD%E5%A4%A7%E5%90%89/" />
+<link rel="canonical" href="http://localhost:1313/post/%E5%85%B3%E4%BA%8Emaven%E4%B8%8E%E5%8C%85%E7%AE%A1%E7%90%86/" />
 
 
 
@@ -59,23 +59,23 @@
 
 
 
-<meta property="og:title" content="开播大吉" />
-<meta property="og:description" content="#大家好 我的博客开通了，希望我能写出很好的文章" />
+<meta property="og:title" content="关于Maven与包管理" />
+<meta property="og:description" content="JVM的工作 执行一个类的字节码 假如这个过程中碰到了新的类,则加载新类的字节码 包的概念 为了更好地组织类,Java提供了包机制 包就是把许多类放在" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/post/%E5%BC%80%E6%92%AD%E5%A4%A7%E5%90%89/" />
-<meta property="article:published_time" content="2020-02-23T18:50:15+08:00" />
-<meta property="article:modified_time" content="2020-02-23T18:50:15+08:00" />
-<meta itemprop="name" content="开播大吉">
-<meta itemprop="description" content="#大家好 我的博客开通了，希望我能写出很好的文章">
-<meta itemprop="datePublished" content="2020-02-23T18:50:15&#43;08:00" />
-<meta itemprop="dateModified" content="2020-02-23T18:50:15&#43;08:00" />
-<meta itemprop="wordCount" content="23">
+<meta property="og:url" content="http://localhost:1313/post/%E5%85%B3%E4%BA%8Emaven%E4%B8%8E%E5%8C%85%E7%AE%A1%E7%90%86/" />
+<meta property="article:published_time" content="2020-03-01T15:27:56+08:00" />
+<meta property="article:modified_time" content="2020-03-01T15:27:56+08:00" />
+<meta itemprop="name" content="关于Maven与包管理">
+<meta itemprop="description" content="JVM的工作 执行一个类的字节码 假如这个过程中碰到了新的类,则加载新类的字节码 包的概念 为了更好地组织类,Java提供了包机制 包就是把许多类放在">
+<meta itemprop="datePublished" content="2020-03-01T15:27:56&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-01T15:27:56&#43;08:00" />
+<meta itemprop="wordCount" content="1018">
 
 
 
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="开播大吉"/>
-<meta name="twitter:description" content="#大家好 我的博客开通了，希望我能写出很好的文章"/>
+<meta name="twitter:title" content="关于Maven与包管理"/>
+<meta name="twitter:description" content="JVM的工作 执行一个类的字节码 假如这个过程中碰到了新的类,则加载新类的字节码 包的概念 为了更好地组织类,Java提供了包机制 包就是把许多类放在"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -337,11 +337,11 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">开播大吉</h1>
+      <h1 class="post-title">关于Maven与包管理</h1>
       
       <div class="post-meta">
-        <time datetime="2020-02-23" class="post-time">
-          2020-02-23
+        <time datetime="2020-03-01" class="post-time">
+          2020-03-01
         </time>
         
         
@@ -359,14 +359,123 @@
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#包的概念">包的概念</a></li>
+    <li><a href="#类路径classpath">类路径Classpath</a></li>
+    <li><a href="#classpath-hell">Classpath hell</a></li>
+    <li><a href="#包管理">包管理</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#maven包管理原则">Maven包管理原则</a></li>
+    <li><a href="#常见的包冲突报错">常见的包冲突报错</a></li>
+    <li><a href="#依赖分析">依赖分析</a></li>
+    <li><a href="#修改pomxml手动解决包冲突">修改pom.xml手动解决包冲突</a></li>
+    <li><a href="#maven中的scope">Maven中的scope</a></li>
+    <li><a href="#其他概念">其他概念</a>
+      <ul>
+        <li><a href="#坐标和依赖">坐标和依赖</a></li>
+        <li><a href="#仓库">仓库</a></li>
+        <li><a href="#生命周期">生命周期</a></li>
+        <li><a href="#聚合和继承">聚合和继承</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
 </div>
 
     
     <div class="post-content">
-      <p>#大家好</p>
-<p>我的博客开通了，希望我能写出很好的文章</p>
+      <h1 id="jvm的工作">JVM的工作</h1>
+<ul>
+<li>执行一个类的字节码</li>
+<li>假如这个过程中碰到了新的类,则加载新类的字节码</li>
+</ul>
+<h2 id="包的概念">包的概念</h2>
+<ul>
+<li>为了更好地组织类,Java提供了包机制</li>
+<li>包就是把许多类放在一起打成的压缩包</li>
+<li>包是类的容器,用于分隔类名空间</li>
+</ul>
+<h2 id="类路径classpath">类路径Classpath</h2>
+<ul>
+<li>-classpath或-cp</li>
+<li>JVM通过类路径找到需要加载的类</li>
+</ul>
+<h2 id="classpath-hell">Classpath hell</h2>
+<ul>
+<li>类的全限定类名(目录层级)唯一确定了一个类</li>
+<li>当多个同名类同时出现在Classpath中,就可能出现很麻烦的问题</li>
+</ul>
+<h2 id="包管理">包管理</h2>
+<ul>
+<li>包管理的本质就是告诉JVM如何找到所需的第三方类库以及解决其中的冲突问题</li>
+<li>用java开发的传统的项目因为包的管理有很多问题,所以才有的maven的诞生</li>
+</ul>
+<h1 id="maven">Maven</h1>
+<p>Maven是一个里程碑式的包管理工具,又远远不止是包管理工具</p>
+<ul>
+<li>
+<p>Maven的中央仓库
+按照一定的约定存储包</p>
+</li>
+<li>
+<p>Maven的本地仓库
+默认位于~/.m2
+下载的第三⽅方包放在这⾥里里进⾏行行缓存</p>
+</li>
+<li>
+<p>Maven的包
+按照约定为所有的包编号，方便便检索(三个属性groupId/artifactId/version)
+扩展-语义化版本</p>
+</li>
+</ul>
+<h1 id="包冲突">包冲突</h1>
+<h2 id="maven包管理原则">Maven包管理原则</h2>
+<ul>
+<li>不允许最终的classpath出现同名不不同版本的jar包</li>
+<li>出现同名包则保留路径层数最短的</li>
+</ul>
+<h2 id="常见的包冲突报错">常见的包冲突报错</h2>
+<ul>
+<li>AbstractMethodError</li>
+<li>NoClassDefFoundError</li>
+<li>ClassNotFoundException</li>
+<li>LinkageError</li>
+</ul>
+<h2 id="依赖分析">依赖分析</h2>
+<ul>
+<li>IDEA中Maven→dependencies</li>
+<li>IDEA中Maven Helper插件</li>
+<li>命令行mvn dependency: tree展示Maven自动解决冲突之后的依赖树</li>
+</ul>
+<h2 id="修改pomxml手动解决包冲突">修改pom.xml手动解决包冲突</h2>
+<ul>
+<li>根据距离最近优先原则，添加一个依赖,使距离远的同名包不被引用</li>
+<li>添加exclusions排除不要的包</li>
+</ul>
+<h2 id="maven中的scope">Maven中的scope</h2>
+<p>scope在maven的依赖管理中主要负责项目的部署</p>
+<ul>
+<li><code>test</code> 只在测试代码中生效</li>
+<li><code>compile</code>在测试和生产环境中都生效</li>
+<li><code>provided</code> 在编译的时候生效，在运行时不生效</li>
+</ul>
+<h2 id="其他概念">其他概念</h2>
+<h3 id="坐标和依赖">坐标和依赖</h3>
+<p>Maven坐标为各种构件引入了秩序，任何一个构件都必须明确定义自己的坐标，而一组Maven坐标通过一些元素定义的。如：groupId，artifactId，version,packaging,classifier等</p>
+<h3 id="仓库">仓库</h3>
+<p>仓库可以理解为一个用来存储文本和数据的数据存储应用程序</p>
+<h3 id="生命周期">生命周期</h3>
+<p>类从被加载到虚拟机内存中开始， 到卸载出内存为止， 是它的整个生命周期</p>
+<h3 id="聚合和继承">聚合和继承</h3>
+<ul>
+<li>聚合是关联关系的一种特例，他体现的是整体与部分、拥有的关系，即has-a的关系</li>
+<li>组合也是关联关系的一种特例，他体现的是一种contains-a的关系</li>
+<li>对于类来说，这种关系叫做继承，对于接口来说，这种关系叫做实现。继承是一种“is-a”关系</li>
+</ul>
 
     </div>
 
@@ -380,7 +489,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-      2020-02-23
+      2020-03-01
       
     </span>
   </p>
@@ -401,22 +510,9 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/%E5%85%B3%E4%BA%8Emaven%E4%B8%8E%E5%8C%85%E7%AE%A1%E7%90%86/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">关于Maven与包管理</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
-          <a class="next" href="/post/%E7%AC%AC%E4%BA%8C%E7%AF%87%E5%8D%9A%E5%AE%A2/">
-            <span class="next-text nav-default">第二篇博客</span>
+          <a class="next" href="/post/%E5%BC%80%E6%92%AD%E5%A4%A7%E5%90%89/">
+            <span class="next-text nav-default">开播大吉</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
