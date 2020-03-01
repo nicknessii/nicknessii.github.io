@@ -32,6 +32,107 @@
     </item>
     
     <item>
+      <title>关于Collection体系</title>
+      <link>http://localhost:1313/post/%E5%85%B3%E4%BA%8Ecollection%E4%BD%93%E7%B3%BB/</link>
+      <pubDate>Sun, 01 Mar 2020 17:37:39 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E5%85%B3%E4%BA%8Ecollection%E4%BD%93%E7%B3%BB/</guid>
+      
+        <description>&lt;h1 id=&#34;collection体系&#34;&gt;Collection体系&lt;/h1&gt;
+&lt;h2 id=&#34;collection接口有两个子接口&#34;&gt;Collection接口：有两个子接口&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;List:记录元素的保存顺序，且允许有重复元素&lt;/li&gt;
+&lt;li&gt;Set：不记录元素的保存顺序，且不允许有重复元素
+&lt;img src=&#34;http://localhost:1313/1.png&#34; alt=&#34;avatar&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/2.png&#34; alt=&#34;avatar&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;list接口线性表&#34;&gt;List接口：线性表&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;主要实现类是ArrayList，LinkedList，以及早期的Vector&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-Java&#34; data-lang=&#34;Java&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;List&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;E&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;extends&lt;/span&gt; Collecion&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;E&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;{&lt;/span&gt;
+    E &lt;span style=&#34;color:#a6e22e&#34;&gt;get&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; index&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+    E &lt;span style=&#34;color:#a6e22e&#34;&gt;set&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; index&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt;E element&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; index&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt;E element&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+    E &lt;span style=&#34;color:#a6e22e&#34;&gt;remove&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; index&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;indexOf&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Object o&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;迭代器Iterator（所有的Collection都能产生）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-Java&#34; data-lang=&#34;Java&#34;&gt;Iterator iterator &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iterable&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;iterator&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;iterator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;hasNext&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;())&lt;/span&gt; doSometing&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;iterator&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;next&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;());&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;JDK1.5以后，出现增强的for-each语句,以上写法等价于此处写法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-Java&#34; data-lang=&#34;Java&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;Element e&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;list&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;doSometing&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;e&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;stack栈&#34;&gt;Stack栈&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;遵循后进新出LIFO原则&lt;/li&gt;
+&lt;li&gt;重要线性数据结构&lt;/li&gt;
+&lt;li&gt;包含三个方法：push()、pop()、empty()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;queue队列&#34;&gt;Queue队列&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;遵循先进先出FIFO&lt;/li&gt;
+&lt;li&gt;固定在一端入队，另一端出队&lt;/li&gt;
+&lt;li&gt;方法：Insert()、add(e)、offer(e)、remeove()等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;几个早期的类或接口&#34;&gt;几个早期的类或接口&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Vector，现多用ArrayList&lt;/li&gt;
+&lt;li&gt;Stack，现多用LinkedList&lt;/li&gt;
+&lt;li&gt;Hashtable，现多用HashMap&lt;/li&gt;
+&lt;li&gt;Enumeration，现多用Iterator&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;set集&#34;&gt;Set集&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;两个重要实现HashSet和TreeSet（红黑树）&lt;/li&gt;
+&lt;li&gt;TreeSet底层用TreeMap实现&lt;/li&gt;
+&lt;li&gt;Set中对象不重复（hashCode（）不等，如果相等，再看equals或==是否为false）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;map接口即映射&#34;&gt;Map接口（即映射）&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;键值对的集合&lt;/li&gt;
+&lt;li&gt;其中可以取到enrtrySet()、keySet()、values()&lt;/li&gt;
+&lt;li&gt;Map.Entry是一个嵌套接口&lt;/li&gt;
+&lt;li&gt;重要实现：HashMap类、TreeMap类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/3.png&#34; alt=&#34;avatar&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;hashmap经典题&#34;&gt;HashMap经典题&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;HashMap的扩容
+扩容(resize)就是重新计算容量，向HashMap对象里不停的添加元素，而HashMap对象内部的数组无法装载更多的元素时，对象就需要扩大数组的长度，以便能装入更多的元素。当然Java里的数组是无法自动扩容的，方法是使用一个新的数组代替已有的容量小的数组，就像我们用一个小桶装水，如果想装更多的水，就得换大水桶。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;简述线程不安全性
+多线程resize()可能造成死循环。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HashMap在Java 7+后的改变
+链表变为红黑树&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;guava&#34;&gt;Guava&lt;/h2&gt;
+&lt;p&gt;当Collection不能满足需求时，可以用此Google写的类库&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Lists/Sets/Maps
+略&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MultiSet/MultiMap
+MultiSet可以用于相同元素出现多次；MultiMap用于一个Key对应多个Value&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;BiMap
+双向Map，可以从value映射到key(反向)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>关于Maven与包管理</title>
       <link>http://localhost:1313/post/%E5%85%B3%E4%BA%8Emaven%E4%B8%8E%E5%8C%85%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sat, 29 Feb 2020 15:27:56 +0800</pubDate>

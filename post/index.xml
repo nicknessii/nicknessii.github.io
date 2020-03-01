@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Nick的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 29 Feb 2020 15:27:56 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 01 Mar 2020 17:37:39 +0800</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于Collection体系</title>
+      <link>http://localhost:1313/post/%E5%85%B3%E4%BA%8Ecollection%E4%BD%93%E7%B3%BB/</link>
+      <pubDate>Sun, 01 Mar 2020 17:37:39 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/%E5%85%B3%E4%BA%8Ecollection%E4%BD%93%E7%B3%BB/</guid>
+      <description>Collection体系 Collection接口：有两个子接口 List:记录元素的保存顺序，且允许有重复元素 Set：不记录元素的保存顺序，且</description>
+    </item>
     
     <item>
       <title>关于Maven与包管理</title>
